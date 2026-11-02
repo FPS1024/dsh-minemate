@@ -58,12 +58,12 @@
       },
       "versions": [
         {
-          "version": "1.2.1",
-          "publishTimestamp": 1793634840,
+          "version": "1.2.2",
+          "publishTimestamp": 1793635725,
           "source": {
             "type": "git",
             "url": "https://github.com/FPS1024/dsh-minemate",
-            "commit": "af2858ed5d17b32bf8692e05e8df31d0adbdd224"
+            "commit": "dd3fd2250255b3362c162e5e5bcf8337c4ac292d"
           },
           "engines": {
             "dsh": ">=0.2.1-rc.7"
