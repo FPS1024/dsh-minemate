@@ -1,6 +1,6 @@
 {
   "name": "@fps1024/dsh-minemate",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "DSH-powered Minecraft Java companion: a real player body driven by a DeepSeek Harness Agent.",
   "type": "module",
   "main": "./bundle/index.js",

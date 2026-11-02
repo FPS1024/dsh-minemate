@@ -37,8 +37,9 @@ cat >"$PATCH" <<YAML
         autoDefend: true
         avoidLava: true
         autoSleep: true
-        autonomy: 60
-        proactiveIntervalMs: 45000
+        autonomy: 0
+        proactiveIntervalMs: 180000
+        ambientChat: false
         agentSessionId: ''
 YAML
 

@@ -127,3 +127,14 @@ test('builds a rich observation and renders it for the model', () => {
   assert.match(text, /树木 oak_log/)
   assert.match(text, /背包：oak_logx3/)
 })
+
+test('never invents owner health when the protocol does not expose it', () => {
+  const bot = fakeBot()
+  delete bot.players.FPS1024.entity.health
+  const observation = buildObservation(bot, { owner: 'FPS1024', radius: 14 })
+
+  assert.equal(observation.owner.visible, true)
+  assert.equal('health' in observation.owner, false)
+  assert.match(renderObservation(observation), /血量 未知/)
+  assert.doesNotMatch(renderObservation(observation), /血量 0\/20/)
+})

@@ -33,7 +33,7 @@ window.__ModuleLoader__.load({
       ['port', '端口', 1, 65535],
       ['reactionDelayMs', '反应延迟 (ms)', 0, 1000],
       ['autonomy', '主动性 (0–100)', 0, 100],
-      ['proactiveIntervalMs', '生活回合间隔 (ms)', 10000, 600000],
+      ['proactiveIntervalMs', '生活回合间隔 (ms)', 30000, 600000],
     ]
     const BOOL_FIELDS = [
       ['autoConnect', '加载后自动上线'],
@@ -46,6 +46,7 @@ window.__ModuleLoader__.load({
       ['autoDefend', '被近身攻击时自动还手'],
       ['avoidLava', '岩浆附近自动离开'],
       ['autoSleep', '夜晚自动睡床'],
+      ['ambientChat', '把其他玩家聊天也交给大脑（默认关）'],
     ]
     const ALL_FIELDS = [
       ...TEXT_FIELDS.map(([field]) => field),
@@ -218,7 +219,7 @@ window.__ModuleLoader__.load({
         h('div', { style: grid },
           numberField(draft, update, 'reactionDelayMs', '反应延迟 (ms)', 0, 1000),
           numberField(draft, update, 'autonomy', '主动性 (0–100)', 0, 100),
-          numberField(draft, update, 'proactiveIntervalMs', '生活回合间隔 (ms)', 10000, 600000),
+          numberField(draft, update, 'proactiveIntervalMs', '生活回合间隔 (ms)', 30000, 600000),
         ),
 
         h('h4', { style: heading }, 'Agent 与人格'),

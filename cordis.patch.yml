@@ -33,9 +33,12 @@
         autoDefend: true
         avoidLava: true
         autoSleep: true
-        # 0 disables unprompted life turns; 60 is curious but not frantic.
-        autonomy: 60
-        proactiveIntervalMs: 45000
+        # Off by default: unprompted life turns made the owner's first message
+        # wait behind tool loops. Turn it up deliberately if you want them.
+        autonomy: 0
+        proactiveIntervalMs: 180000
+        # Other players' chat is ambient noise unless explicitly enabled.
+        ambientChat: false
         # Set this to a DSH session id to pin one agent. Empty = the single
         # root agent in the profile.
         agentSessionId: ''

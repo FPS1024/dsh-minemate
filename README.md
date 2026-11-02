@@ -4,11 +4,13 @@
 
 - 开源地址：<https://github.com/FPS1024/dsh-minemate>
 - 包名：`@fps1024/dsh-minemate`
-- 当前版本：**1.2.5（P2 + 可视化配置 + Host bundle）**
+- 当前版本：**1.2.6（响应优先 + 低噪声 + 性能）**
 
+> **1.2.6 重点**：主人说话会抢占正在运行的工具回合，先回答再行动；一条主人消息最多连续 3 个动作工具；身体忙时拒绝重复动作；捡到东西、其他玩家上下线、普通受伤不再主动叫醒大脑；默认关闭空闲生活回合与其他玩家旁听。旧的长会话请新建一个 DSH session，避免旧上下文继续增加渲染和模型开销。
+>
 > **1.2.5 关键修复**：如果在发行版客户端启用时报
 > `createRequire.resolve.paths is not a function or its return value is not iterable`，
-> 请升级到 1.2.5。Host 依赖已打包进 `bundle/index.js`，绕过了 DSH
+> 请升级到 1.2.5 或更高版本。Host 依赖已打包进 `bundle/index.js`，绕过了 DSH
 > profile loader 对 `readable-stream` 发出的 `process/`、`string_decoder/`
 > 这种带尾斜杠请求的解析 bug。
 - License：MIT
@@ -118,8 +120,9 @@ DSH_PROFILE=web ./scripts/dsh-dev.sh --no-open --port 0
 | `autoDefend` | `true` | 被近身敌人攻击时还手；苦力怕等改为逃跑 |
 | `avoidLava` | `true` | 岩浆 2 格内中断动作并离开 |
 | `autoSleep` | `true` | 夜晚、有床、无怪且空闲时自动睡 |
-| `autonomy` | `60` | 0–100，空闲生活回合主动程度；0 关闭 |
-| `proactiveIntervalMs` | `45000` | 生活回合最小间隔 |
+| `autonomy` | `0` | 0–100，空闲生活回合主动程度；0 关闭（默认关闭） |
+| `proactiveIntervalMs` | `180000` | 生活回合最小间隔 |
+| `ambientChat` | `false` | 是否把其他玩家聊天也交给大脑 |
 | `agentSessionId` | `''` | 指定 DSH session；空 = 当前 profile 的单个根 agent |
 | `persona` | `''` | 追加人格 prompt |
 
@@ -166,8 +169,9 @@ pnpm smoke:defend         # 实机：RCON 放 NoAI 僵尸，确认自动还手
 pnpm smoke:lava           # 实机：RCON 放岩浆，确认避岩浆
 ```
 
-已实测（2026-11-02）：
+已实测（2026-11-03）：
 
+- 1.2.6 单元测试 20 passed：主人消息抢占、上线/环境事件不叫醒大脑、采集完成唤醒、未知主人血量不显示为 0。
 - 单元测试 15 passed（含客户端配置 bundle 的 slot 注册与表单渲染）。
 - 1.2.5 实机安装：web profile 用普通 tarball 包安装，插件激活成功、Alex 上线；1.2.2 的 `createRequire.resolve.paths` 错误不再出现。
 - Web UI 验收：Plugins → `@fps1024/dsh-minemate` → Configure，MineMate 设置表单完整渲染；把 `autonomy` 改为 61 并保存，profile 写入 `autonomy: 61`。

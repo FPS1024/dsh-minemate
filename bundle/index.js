@@ -57898,6 +57898,8 @@ function buildSystemPrompt(config = {}) {
 
 [\u548C\u4E3B\u4EBA\u7684\u5173\u7CFB]
 - ${owner} \u662F\u4F60\u7684\u4E3B\u4EBA\u548C\u540C\u4F34\u3002\u53EA\u6709 ${owner} \u7684\u804A\u5929\u4F1A\u4F5C\u4E3A\u76F4\u63A5\u5BF9\u8BDD\u4EA4\u7ED9\u4F60\uFF1B\u5176\u4ED6\u4EBA\u7684\u804A\u5929\u53EA\u662F\u73AF\u5883\u97F3\u3002
+- \u4E3B\u4EBA\u8BF4\u8BDD\u6C38\u8FDC\u4F18\u5148\u3002\u5148\u505C\u4E0B\u6765\u76F4\u63A5\u56DE\u5E94\u4E3B\u4EBA\uFF0C\u518D\u8003\u8651\u52A8\u4F5C\uFF1B\u8EAB\u4F53\u5728\u5FD9\u65F6\u7528\u4E00\u53E5\u8BDD\u8BF4\u660E\uFF0C\u4E0D\u8981\u7EE7\u7EED\u57CB\u5934\u5237\u5DE5\u5177\u3002
+- \u4E00\u6761\u4E3B\u4EBA\u6D88\u606F\u6700\u591A\u8FDE\u7EED\u8C03\u7528 3 \u4E2A\u52A8\u4F5C\u5DE5\u5177\u3002\u8D85\u8FC7 3 \u4E2A\u5C31\u505C\u4E0B\u6765\u6C47\u62A5\u8FDB\u5C55\uFF0C\u628A\u4E0B\u4E00\u6B65\u7684\u9009\u62E9\u4EA4\u8FD8\u7ED9\u4E3B\u4EBA\u3002
 - \u548C\u4E3B\u4EBA\u8BF4\u8BDD\u65F6\u81EA\u7136\u3001\u7B80\u77ED\u3001\u50CF\u4E00\u8D77\u73A9\u7684\u4EBA\u3002\u4E0D\u8981\u5BA2\u670D\u8154\uFF0C\u4E0D\u8981\u6BCF\u53E5\u8BDD\u90FD\u627F\u8BFA\u201C\u6211\u8FD9\u5C31\u53BB\u201D\uFF1B\u627F\u8BFA\u4E86\u5C31\u5FC5\u987B\u771F\u7684\u8C03\u7528\u5DE5\u5177\u53BB\u505A\u3002
 - \u4E3B\u4EBA\u5728\u9644\u8FD1\u65F6\uFF0C\u4FDD\u6301 2\u20133 \u683C\u8DDD\u79BB\uFF0C\u8BF4\u8BDD\u65F6\u770B\u5411\u4E3B\u4EBA\uFF0C\u4E0D\u8981\u8D34\u8138\u6216\u6321\u4F4F\u5BF9\u65B9\u3002
 
@@ -57909,8 +57911,9 @@ function buildSystemPrompt(config = {}) {
 
 [\u600E\u4E48\u505A]
 - \u4E00\u6B21\u53EA\u505A\u4E00\u4EF6\u4E8B\u3002\u79FB\u52A8\u7528 mc_goto\uFF08\u957F\u8DDD\u79BB\uFF09\u6216 mc_move\uFF08\u77ED\u8DDD\u79BB\u5FAE\u8C03\uFF09\uFF1B\u770B\u4E1C\u897F\u7528 mc_look\uFF1B\u6316\u7528 mc_dig/mc_collect\uFF1B\u6361\u7528 mc_pickup\uFF1B\u653E\u7528 mc_place\uFF1B\u7528\u7269\u54C1\u7528 mc_use\uFF1B\u6218\u6597\u7528 mc_attack\u3002
-- mc_goto\u3001mc_collect \u8FD9\u7C7B\u52A8\u4F5C\u53EF\u80FD\u8FD4\u56DE\u201C\u8FD8\u5728\u8FDB\u884C\uFF08intent-...\uFF09\u201D\u3002\u8FD9\u662F\u6B63\u5E38\u7684\uFF1A\u8EAB\u4F53\u4F1A\u7EE7\u7EED\u505A\uFF0C\u5B8C\u6210\u6216\u5931\u8D25\u65F6\u4F1A\u6709\u4E00\u6761 [\u8EAB\u4F53] \u6D88\u606F\u628A\u4F60\u53EB\u9192\u3002\u4E0D\u8981\u56E0\u4E3A\u6CA1\u7ACB\u523B\u5B8C\u6210\u5C31\u91CD\u590D\u8C03\u7528\u540C\u4E00\u4E2A\u5DE5\u5177\u3002
+- mc_goto\u3001mc_collect \u8FD9\u7C7B\u52A8\u4F5C\u53EF\u80FD\u8FD4\u56DE\u201C\u8FD8\u5728\u8FDB\u884C\uFF08intent-...\uFF09\u201D\u3002\u770B\u5230\u201C\u8FD8\u5728\u8FDB\u884C\u201D\u5C31\u7ACB\u523B\u505C\u6B62\u8C03\u7528\u52A8\u4F5C\u5DE5\u5177\uFF1A\u8EAB\u4F53\u4F1A\u7EE7\u7EED\u505A\uFF0C\u5B8C\u6210\u6216\u5931\u8D25\u65F6\u4F1A\u6709\u4E00\u6761 [\u8EAB\u4F53] \u6D88\u606F\u628A\u4F60\u53EB\u9192\u3002\u4E0D\u8981\u91CD\u590D\u8C03\u7528\uFF0C\u4E5F\u4E0D\u8981\u8D81\u5B83\u6CA1\u5B8C\u6210\u518D\u585E\u4E00\u4E2A\u65B0\u52A8\u4F5C\u3002
 - \u5982\u679C\u5DE5\u5177\u5931\u8D25\uFF0C\u5148\u770B\u9519\u8BEF\u539F\u56E0\uFF0C\u6362\u65B9\u6CD5\u6216\u6362\u76EE\u6807\uFF1B\u4E0D\u8981\u539F\u6837\u91CD\u8BD5\u4E09\u6B21\u3002
+- \u4E3B\u4EBA\u6CA1\u6709\u660E\u786E\u8981\u6C42\u65F6\uFF0C\u4E0D\u8981\u81EA\u5DF1\u542F\u52A8\u957F\u65F6\u95F4\u6316\u77FF\u3001\u8FDC\u5F81\u6216\u5927\u5DE5\u7A0B\u3002\u5148\u505A\u773C\u524D\u7684\u5C0F\u4E8B\uFF1B\u7A7A\u95F2\u65F6\u4E5F\u53EF\u4EE5\u4EC0\u4E48\u90FD\u4E0D\u505A\u3002
 - \u780D\u6811\u65F6\u4E0D\u8981\u53EA\u780D\u4E00\u5757\u5C31\u8D70\uFF1A\u786E\u8BA4\u80CC\u5305\u91CC\u771F\u7684\u591A\u4E86\u6728\u5934\uFF0C\u518D\u79BB\u5F00\u3002\u6316\u77F3\u5934\u9700\u8981\u9550\uFF0C\u6CA1\u9550\u5C31\u5148 mc_craft \u6216\u627E\u5DE5\u5177\u3002
 - \u4E0D\u8981\u7834\u574F\u4E3B\u4EBA\u623F\u5B50\u3001\u7BB1\u5B50\u6216\u81EA\u5DF1\u521A\u76D6\u7684\u4E1C\u897F\uFF1B\u4E0D\u8981\u5F80\u811A\u4E0B\u653E\u65B9\u5757\u628A\u81EA\u5DF1\u5361\u4F4F\u3002\u5B58\u53D6\u7BB1\u5B50\u7528 mc_container\uFF0C\u4E0D\u8981\u62FF\u5149\u4E3B\u4EBA\u7BB1\u5B50\u91CC\u7684\u4E1C\u897F\u3002
 
@@ -57946,19 +57949,20 @@ ${config.persona}` : "");
 // lib/companion.js
 import { createUserMessage } from "@deepseek-ai/dsh-llm";
 var Companion = class {
-  constructor({ body, ctx: ctx2, config = {}, logger }) {
+  constructor({ body, ctx: ctx2, config = {}, logger, onOwnerMessage, now }) {
     this.body = body;
     this.ctx = ctx2;
     this.config = config;
     this.logger = logger ?? console;
+    this.onOwnerMessage = onOwnerMessage;
+    this.now = now ?? Date.now;
     this.agent = null;
     this.pending = [];
     this.flushTimer = null;
     this.lifeTimer = null;
     this.unsubscribers = [];
     this.lastLifeTick = 0;
-    this.lastDangerAt = 0;
-    this.lastPickupNoteAt = 0;
+    this.lastOwnerChatAt = 0;
     this.started = false;
   }
   start() {
@@ -57969,58 +57973,42 @@ var Companion = class {
       this.unsubscribers.push(() => this.body.off(event, handler));
     };
     on("online", ({ username }) => {
-      this.queue(`[\u4E0A\u7EBF] \u4F60\u4EE5 ${username} \u7684\u8EAB\u4EFD\u8FDB\u5165\u4E16\u754C\u4E86\u3002\u5148\u89C2\u5BDF\u4E00\u4E0B\u5468\u56F4\uFF0C\u7136\u540E\u51B3\u5B9A\u505A\u4EC0\u4E48\u3002`, { urgent: true });
+      if (Number(this.config.autonomy) > 0) {
+        this.queue(`[\u4E0A\u7EBF] \u4F60\u4EE5 ${username} \u7684\u8EAB\u4EFD\u8FDB\u5165\u4E16\u754C\u4E86\u3002`);
+      }
     });
     on("ownerChat", ({ username, message }) => {
-      this.queue(`[\u4E3B\u4EBA\u8BF4] ${username}\uFF1A${message}`, { urgent: true });
+      this.deliverOwner(`[\u4E3B\u4EBA\u8BF4] ${username}\uFF1A${message}`);
     });
     on("chat", ({ username, message }) => {
+      if (this.config.ambientChat !== true) return;
       if (String(username).toLowerCase() === String(this.config.owner ?? "").toLowerCase()) return;
       this.queue(`[\u65C1\u542C] ${username}\uFF1A${message}`);
     });
-    on("ownerJoin", ({ username }) => {
-      this.queue(`[\u4E3B\u4EBA\u4E0A\u7EBF] ${username} \u8FDB\u5165\u670D\u52A1\u5668\u4E86\u3002\u53EF\u4EE5\u6253\u4E2A\u62DB\u547C\u3002`, { urgent: true });
-    });
-    on("ownerLeave", ({ username }) => {
-      this.queue(`[\u4E3B\u4EBA\u4E0B\u7EBF] ${username} \u79BB\u5F00\u670D\u52A1\u5668\u4E86\u3002`, { urgent: true });
-    });
     on("damage", ({ health }) => {
-      if (health <= 12) this.queue(`[\u53D7\u4F24] \u4F60\u73B0\u5728\u53EA\u6709 ${health}/20 \u8840\u3002\u5148\u786E\u8BA4\u5468\u56F4\u5B89\u5168\uFF0C\u5FC5\u8981\u65F6\u5403\u4E1C\u897F\u6216\u9003\u8DD1\u3002`, { urgent: true });
+      if (health <= 12) this.queue(`[\u53D7\u4F24] \u4F60\u73B0\u5728\u53EA\u6709 ${health}/20 \u8840\u3002\u5148\u786E\u8BA4\u5468\u56F4\u5B89\u5168\u3002`);
     });
     on("death", () => {
       this.queue("[\u6B7B\u4EA1] \u4F60\u6B7B\u4E86\u4E00\u6B21\uFF0C\u6389\u4E86\u4E1C\u897F\u3002\u91CD\u751F\u540E\u5148\u770B\u770B\u5468\u56F4\uFF0C\u522B\u91CD\u590D\u9001\u547D\u3002", { urgent: true });
     });
-    on("hostile", ({ name: name2, distance: distance2 }) => {
-      const now = Date.now();
-      if (now - this.lastDangerAt < 15e3) return;
-      this.lastDangerAt = now;
-      this.queue(`[\u5371\u9669] ${name2} \u5728 ${distance2} \u683C\u5185\u3002\u5224\u65AD\u662F\u6253\u8FD8\u662F\u8DD1\u3002`, { urgent: true });
-    });
     on("intent:done", ({ name: name2, result }) => {
-      this.queue(`[\u8EAB\u4F53] ${name2} \u5B8C\u6210\u4E86\uFF1A${result}`, { urgent: true });
+      if (name2 !== "collect") return;
+      this.queue(`[\u8EAB\u4F53] \u91C7\u96C6\u5B8C\u6210\u4E86\uFF1A${String(result).slice(0, 300)}`);
     });
     on("intent:failed", ({ name: name2, error }) => {
-      this.queue(`[\u8EAB\u4F53] ${name2} \u5931\u8D25\u4E86\uFF1A${error}\u3002\u770B\u60C5\u51B5\u6362\u4E2A\u529E\u6CD5\uFF0C\u4E0D\u8981\u539F\u6837\u91CD\u8BD5\u3002`, { urgent: true });
-    });
-    on("rareItem", ({ name: name2 }) => {
-      this.queue(`[\u7A00\u6709] \u4F60\u6361\u5230\u4E86 ${name2}\u3002`, { urgent: true });
-    });
-    on("pickup", ({ name: name2 }) => {
-      const now = Date.now();
-      if (now - this.lastPickupNoteAt < 4e3) return;
-      this.lastPickupNoteAt = now;
-      this.queue(`[\u80CC\u5305] \u6361\u5230\u4E86 ${name2}\u3002`);
+      if (name2 !== "collect") return;
+      this.queue(`[\u8EAB\u4F53] \u91C7\u96C6\u5931\u8D25\u4E86\uFF1A${String(error).slice(0, 300)}\u3002\u770B\u60C5\u51B5\u6362\u4E2A\u529E\u6CD5\uFF0C\u4E0D\u8981\u539F\u6837\u91CD\u8BD5\u3002`);
     });
     on("botError", (error) => {
       this.logger?.warn?.(`[minemate] bot error: ${error?.message ?? error}`);
     });
     on("kicked", ({ reason }) => {
-      this.queue(`[\u8FDE\u63A5] \u88AB\u670D\u52A1\u5668\u8E22\u51FA\uFF1A${reason}\u3002\u8EAB\u4F53\u4F1A\u81EA\u52A8\u91CD\u8FDE\u3002`, { urgent: true });
+      this.logger?.warn?.(`[minemate] kicked: ${reason}`);
     });
     on("offline", (reason) => {
       this.logger?.warn?.(`[minemate] offline: ${reason ?? "unknown"}`);
     });
-    const interval = Math.max(1e4, Number(this.config.proactiveIntervalMs) || 45e3);
+    const interval = Math.max(3e4, Number(this.config.proactiveIntervalMs) || 18e4);
     this.lifeTimer = setInterval(() => {
       void this.lifeTick();
     }, interval);
@@ -58033,7 +58021,7 @@ var Companion = class {
     if (config.agentSessionId !== previousAgent) this.agent = null;
     if (this.started && config.proactiveIntervalMs !== previousInterval) {
       if (this.lifeTimer) clearInterval(this.lifeTimer);
-      const interval = Math.max(1e4, Number(config.proactiveIntervalMs) || 45e3);
+      const interval = Math.max(3e4, Number(config.proactiveIntervalMs) || 18e4);
       this.lifeTimer = setInterval(() => {
         void this.lifeTick();
       }, interval);
@@ -58052,6 +58040,10 @@ var Companion = class {
     }
     for (const unsubscribe of this.unsubscribers.splice(0)) unsubscribe();
     this.pending = [];
+  }
+  /** Bind the body to the exact agent that actually called a tool. */
+  bindAgent(agent) {
+    if (agent) this.agent = agent;
   }
   _agents() {
     try {
@@ -58081,8 +58073,13 @@ var Companion = class {
   }
   queue(text, options = {}) {
     if (!text) return;
+    const agent = this.resolveAgent();
+    if (!options.urgent) {
+      if (agent?.status === "running") return;
+      if (this.lastOwnerChatAt > 0 && this.now() - this.lastOwnerChatAt < 1e4) return;
+    }
     this.pending.push(String(text));
-    if (this.pending.length > 12) this.pending.splice(0, this.pending.length - 12);
+    if (this.pending.length > 6) this.pending.splice(0, this.pending.length - 6);
     if (options.urgent) {
       this.flush();
       return;
@@ -58091,7 +58088,7 @@ var Companion = class {
     this.flushTimer = setTimeout(() => {
       this.flushTimer = null;
       this.flush();
-    }, 800);
+    }, 1200);
     this.flushTimer.unref?.();
   }
   flush() {
@@ -58103,7 +58100,7 @@ var Companion = class {
     const text = this.pending.splice(0).join("\n");
     if (!this.deliver(text)) {
       this.pending.unshift(text);
-      if (this.pending.length > 12) this.pending.length = 12;
+      if (this.pending.length > 6) this.pending.length = 6;
     }
   }
   deliver(text) {
@@ -58121,30 +58118,50 @@ var Companion = class {
       return false;
     }
   }
+  /** Owner chat preempts a long tool turn; everything else waits or is dropped. */
+  deliverOwner(text) {
+    this.lastOwnerChatAt = this.now();
+    const agent = this.resolveAgent();
+    this.onOwnerMessage?.(agent);
+    this.pending = [];
+    if (!agent?.followup) {
+      this.pending.push(text);
+      return false;
+    }
+    try {
+      if (agent.status === "running") {
+        try {
+          agent.cancel?.({ kind: "user" }, { keepInbox: true });
+        } catch (error) {
+          this.logger?.debug?.(`[minemate] cancel before owner message failed: ${error?.message ?? error}`);
+        }
+      }
+      agent.followup(createUserMessage({
+        content: [{ type: "text", text }],
+        source: { kind: "user" }
+      }));
+      return true;
+    } catch (error) {
+      this.logger?.warn?.(`[minemate] couldn't deliver owner chat: ${error?.message ?? error}`);
+      this.agent = null;
+      this.pending.push(text);
+      return false;
+    }
+  }
   async lifeTick() {
     if (!this.started || !this.body.online) return;
     if (!this.body.idle) return;
     const autonomy = Math.max(0, Math.min(100, Number(this.config.autonomy) || 0));
     if (autonomy <= 0) return;
     if (Math.random() * 100 > autonomy) return;
-    const now = Date.now();
-    const interval = Math.max(1e4, Number(this.config.proactiveIntervalMs) || 45e3);
+    const now = this.now();
+    if (this.lastOwnerChatAt > 0 && now - this.lastOwnerChatAt < 3e5) return;
+    const agent = this.resolveAgent();
+    if (agent?.status === "running") return;
+    const interval = Math.max(12e4, Number(this.config.proactiveIntervalMs) || 18e4);
     if (now - this.lastLifeTick < interval) return;
     this.lastLifeTick = now;
-    let observation;
-    try {
-      observation = this.body.observe(12);
-    } catch (error) {
-      this.logger?.debug?.(`[minemate] life tick observation failed: ${error?.message ?? error}`);
-      return;
-    }
-    this.queue(
-      `[\u751F\u6D3B\u56DE\u5408] \u4F60\u73B0\u5728\u6CA1\u5728\u505A\u4E8B\u3002
-${observation}
-
-\u4F60\u53EF\u4EE5\u7EE7\u7EED\u81EA\u5DF1\u7684\u76EE\u6807\u3001\u548C\u4E3B\u4EBA\u4E92\u52A8\u3001\u6574\u7406\u80CC\u5305\uFF0C\u6216\u8005\u627E\u70B9\u4E8B\u505A\u3002\u4E0D\u8981\u6BCF\u56DE\u5408\u90FD\u95EE\u4E3B\u4EBA\u201C\u8981\u505A\u4EC0\u4E48\u201D\u3002`,
-      { urgent: true }
-    );
+    this.queue("[\u7A7A\u95F2] \u4F60\u5DF2\u7ECF\u95F2\u4E86\u4E00\u4F1A\u513F\u3002\u53EF\u4EE5\u7EE7\u7EED\u81EA\u5DF1\u7684\u76EE\u6807\uFF0C\u4E5F\u53EF\u4EE5\u4F11\u606F\uFF1B\u4E0D\u7528\u5F3A\u884C\u627E\u4E8B\u505A\u3002");
   }
 };
 
@@ -58174,13 +58191,28 @@ function abortable(body, exec, fn) {
   return async () => {
     const signal = exec?.signal;
     if (!signal) return fn();
-    const onAbort = () => body.cancelCurrentIntent("tool call aborted");
-    signal.addEventListener("abort", onAbort, { once: true });
-    try {
-      return await fn();
-    } finally {
-      signal.removeEventListener("abort", onAbort);
+    if (signal.aborted) {
+      await body.stop();
+      throw new Error("\u52A8\u4F5C\u5DF2\u53D6\u6D88");
     }
+    return await new Promise((resolve2, reject) => {
+      let settled = false;
+      const onAbort = () => {
+        void body.stop();
+        finish(reject, new Error("\u52A8\u4F5C\u5DF2\u53D6\u6D88"));
+      };
+      const finish = (callback, value) => {
+        if (settled) return;
+        settled = true;
+        signal.removeEventListener("abort", onAbort);
+        callback(value);
+      };
+      signal.addEventListener("abort", onAbort, { once: true });
+      Promise.resolve().then(fn).then(
+        (value) => finish(resolve2, value),
+        (error) => finish(reject, error)
+      );
+    });
   };
 }
 function pointArgs(args) {
@@ -58271,7 +58303,11 @@ function createTools(body) {
       timeoutMs: 15e3,
       execute: wrap(
         body,
-        (args) => body.move(args.direction, args.seconds ?? 1, { sprint: args.sprint, sneak: args.sneak })
+        (args, exec) => abortable(
+          body,
+          exec,
+          () => body.move(args.direction, args.seconds ?? 1, { sprint: args.sprint, sneak: args.sneak })
+        )
       )
     }),
     defineTool({
@@ -58343,7 +58379,10 @@ function createTools(body) {
       },
       output: TEXT_OUTPUT,
       timeoutMs: 25e3,
-      execute: wrap(body, (args) => body.place(args.item, args.x, args.y, args.z))
+      execute: wrap(
+        body,
+        (args, exec) => abortable(body, exec, () => body.place(args.item, args.x, args.y, args.z))
+      )
     }),
     defineTool({
       name: "mc_attack",
@@ -58378,7 +58417,7 @@ function createTools(body) {
       parameters: {},
       output: TEXT_OUTPUT,
       timeoutMs: 35e3,
-      execute: wrap(body, () => body.sleep())
+      execute: wrap(body, (_args, exec) => abortable(body, exec, () => body.sleep()))
     }),
     defineTool({
       name: "mc_wake",
@@ -58397,7 +58436,10 @@ function createTools(body) {
       },
       output: TEXT_OUTPUT,
       timeoutMs: 3e4,
-      execute: wrap(body, (args) => body.craft(args.item, args.count ?? 1))
+      execute: wrap(
+        body,
+        (args, exec) => abortable(body, exec, () => body.craft(args.item, args.count ?? 1))
+      )
     }),
     defineTool({
       name: "mc_equip",
@@ -58439,7 +58481,7 @@ function createTools(body) {
       },
       output: TEXT_OUTPUT,
       timeoutMs: 35e3,
-      execute: wrap(body, (args) => body.container(args))
+      execute: wrap(body, (args, exec) => abortable(body, exec, () => body.container(args)))
     }),
     defineTool({
       name: "mc_jump",
@@ -58841,7 +58883,7 @@ function buildObservation(bot, options = {}) {
   const passives = nearbyEntities.filter((entity) => entity.kind === "passive").slice(0, limit);
   const drops = nearbyEntities.filter((entity) => entity.kind === "item").slice(0, limit);
   const blockRadius = clamp(options.blockRadius ?? Math.min(32, radius + 6), 1, 48);
-  const blocks = options.includeBlocks === false ? [] : findNearbyBlocks(bot, { radius: blockRadius, limit: options.blockLimit ?? 64 });
+  const blocks = options.includeBlocks === false ? [] : findNearbyBlocks(bot, { radius: blockRadius, limit: options.blockLimit ?? 48 });
   const blockGroups = groupBlocks(blocks);
   const ground = bot.blockAt?.(selfPosition.offset(0, -1, 0));
   const feet = bot.blockAt?.(selfPosition);
@@ -58896,7 +58938,10 @@ function buildObservation(bot, options = {}) {
       ...ownerEntity ? {
         position: toVec(ownerEntity.position),
         distance: round(ownerEntity.position.distanceTo(selfPosition)),
-        health: round(ownerEntity.health),
+        // Other players' health is not exposed by the protocol. Never
+        // turn an unknown into "0/20" — that made the model think the
+        // owner was dead.
+        ...typeof ownerEntity.health === "number" && ownerEntity.health > 0 ? { health: round(ownerEntity.health) } : {},
         heldItem: ownerEntity.heldItem?.name ?? null,
         visibleLine: hasLineOfSight(bot, ownerEntity)
       } : {}
@@ -58925,7 +58970,7 @@ function renderObservation(observation) {
     lines.push(`\u4E3B\u4EBA ${observation.owner?.name ?? "?"}\uFF1A\u4E0D\u5728\u7EBF\u3002`);
   } else if (observation.owner.visible) {
     lines.push(
-      `\u4E3B\u4EBA ${observation.owner.name}\uFF1A\u8DDD\u79BB ${observation.owner.distance} \u683C\uFF0C\u4F4D\u7F6E ${posText(observation.owner.position)}\uFF0C\u8840\u91CF ${observation.owner.health}/20\uFF0C\u624B\u6301 ${observation.owner.heldItem ?? "\u7A7A\u624B"}${observation.owner.visibleLine === false ? "\uFF08\u89C6\u7EBF\u88AB\u6321\u4F4F\uFF09" : ""}\u3002`
+      `\u4E3B\u4EBA ${observation.owner.name}\uFF1A\u8DDD\u79BB ${observation.owner.distance} \u683C\uFF0C\u4F4D\u7F6E ${posText(observation.owner.position)}\uFF0C\u8840\u91CF ${observation.owner.health !== void 0 ? `${observation.owner.health}/20` : "\u672A\u77E5"}\uFF0C\u624B\u6301 ${observation.owner.heldItem ?? "\u7A7A\u624B"}${observation.owner.visibleLine === false ? "\uFF08\u89C6\u7EBF\u88AB\u6321\u4F4F\uFF09" : ""}\u3002`
     );
   } else {
     lines.push(`\u4E3B\u4EBA ${observation.owner.name}\uFF1A\u5728\u7EBF\uFF0C\u4F46\u4E0D\u5728\u89C6\u91CE\u5185\u3002`);
@@ -58948,12 +58993,12 @@ function renderObservation(observation) {
   }
   if (observation.blockGroups.length > 0) {
     lines.push(
-      `\u9644\u8FD1\u8D44\u6E90\uFF1A${observation.blockGroups.slice(0, 10).map((group) => `${blockKindLabel(group.kind)} ${group.name} x${group.count}\uFF08\u6700\u8FD1 ${group.nearest} \u683C @ ${posText(group.position)}\uFF09`).join("\uFF1B")}\u3002`
+      `\u9644\u8FD1\u8D44\u6E90\uFF1A${observation.blockGroups.slice(0, 6).map((group) => `${blockKindLabel(group.kind)} ${group.name} x${group.count}\uFF08\u6700\u8FD1 ${group.nearest} \u683C @ ${posText(group.position)}\uFF09`).join("\uFF1B")}\u3002`
     );
   } else {
     lines.push("\u9644\u8FD1\u6CA1\u6709\u8BC6\u522B\u5230\u6811\u6728/\u77FF\u77F3/\u6C34\u6E90/\u7BB1\u5B50/\u5DE5\u4F5C\u53F0\u3002");
   }
-  const inventory = observation.inventory.length > 0 ? observation.inventory.slice().sort((a, b) => b.count - a.count).slice(0, 24).map((item) => `${item.name}x${item.count}`).join("\uFF0C") : "\u7A7A";
+  const inventory = observation.inventory.length > 0 ? observation.inventory.slice().sort((a, b) => b.count - a.count).slice(0, 16).map((item) => `${item.name}x${item.count}`).join("\uFF0C") : "\u7A7A";
   lines.push(`\u80CC\u5305\uFF1A${inventory}\u3002`);
   return lines.join("\n");
 }
@@ -59000,7 +59045,7 @@ var GazeController = class {
     if (this.timer || !this.enabled) return;
     this.timer = setInterval(() => {
       void this.tick();
-    }, 100);
+    }, 250);
     this.timer.unref?.();
   }
   stop() {
@@ -59041,17 +59086,16 @@ var GazeController = class {
         return ownerEntity;
       }
     }
-    let nearestHostile = null;
-    let nearestDistance = Number.POSITIVE_INFINITY;
+    const threats = [];
     for (const entity of Object.values(bot.entities ?? {})) {
       if (!entity?.position || !isHostileName(entity.name)) continue;
       const d = entity.position.distanceTo(bot.entity.position);
-      if (d > 12 || d >= nearestDistance) continue;
-      if (!hasLineOfSight(bot, entity)) continue;
-      nearestHostile = entity;
-      nearestDistance = d;
+      if (d <= 12) threats.push({ entity, distance: d });
     }
-    if (nearestHostile) return nearestHostile;
+    threats.sort((a, b) => a.distance - b.distance);
+    for (const threat of threats.slice(0, 3)) {
+      if (hasLineOfSight(bot, threat.entity)) return threat.entity;
+    }
     if (body.currentIntent?.meta?.target) {
       return { position: body.currentIntent.meta.target, block: true };
     }
@@ -59100,7 +59144,7 @@ var GaitController = class {
   }
   start() {
     if (this.timer || !this.enabled) return;
-    this.timer = setInterval(() => this.tick(), 250);
+    this.timer = setInterval(() => this.tick(), 500);
     this.timer.unref?.();
   }
   stop() {
@@ -59125,7 +59169,7 @@ var GaitController = class {
       if (!body.explicitSneak) this._set("sneak", false);
       return;
     }
-    const lava = body.nearbyLava(3);
+    const lava = body.nearbyLava(2);
     const hostiles = body.nearbyHostiles(8);
     const health = bot.health ?? 20;
     const food = bot.food ?? 20;
@@ -59208,6 +59252,8 @@ var MinecraftBot = class extends EventEmitter {
     this.lastDefendAt = 0;
     this.lastLavaAt = 0;
     this.lastSleepAt = 0;
+    this.lastBedCheckAt = 0;
+    this.nearbyBed = null;
     this.ownerSpokeAt = 0;
     this.reflexTimer = null;
     this.reflexBusy = false;
@@ -59352,8 +59398,8 @@ var MinecraftBot = class extends EventEmitter {
       movements.canDig = false;
       movements.allowParkour = true;
       movements.allowSprinting = true;
-      movements.maxDropDown = 4;
-      movements.liquidCost = 4;
+      movements.maxDropDown = 2;
+      movements.liquidCost = 8;
       bot.pathfinder.setMovements(movements);
     } catch (error) {
       this._log("debug", "[minemate] pathfinder movement setup failed", error.message);
@@ -60353,6 +60399,14 @@ var MinecraftBot = class extends EventEmitter {
     const nearest = blocks[0];
     return bot.blockAt(new Vec3(nearest.position.x, nearest.position.y, nearest.position.z));
   }
+  /** The reflex tick runs every 1.5s; scanning chunks for a bed every tick is
+   * wasted work. Cache the answer for 10s. */
+  _nearbyBed(radius = 16, now = Date.now()) {
+    if (now - this.lastBedCheckAt < 1e4) return this.nearbyBed;
+    this.lastBedCheckAt = now;
+    this.nearbyBed = this._findBed(radius);
+    return this.nearbyBed;
+  }
   async _findContainer(maxDistance = 16) {
     const bot = this.requireBot();
     const blocks = findNearbyBlocks(bot, {
@@ -60448,7 +60502,7 @@ var MinecraftBot = class extends EventEmitter {
     if (this.reflexTimer || this.options.reflex === false) return;
     this.reflexTimer = setInterval(() => {
       void this._reflexTick();
-    }, 750);
+    }, 1500);
     this.reflexTimer.unref?.();
   }
   _stopReflex() {
@@ -60529,7 +60583,7 @@ var MinecraftBot = class extends EventEmitter {
       }
       return;
     }
-    if (this.options.autoSleep !== false && this.idle && now - this.lastSleepAt > 6e4 && health >= 12 && hostiles.length === 0 && isNight(bot.time?.timeOfDay, bot.isRaining, bot.thunderState) && this._findBed(16)) {
+    if (this.options.autoSleep !== false && this.idle && now - this.lastSleepAt > 6e4 && health >= 12 && hostiles.length === 0 && isNight(bot.time?.timeOfDay, bot.isRaining, bot.thunderState) && this._nearbyBed(16, now)) {
       this.lastSleepAt = now;
       this.reflexBusy = true;
       try {
@@ -60612,8 +60666,9 @@ var Config = Schema.object({
   autoDefend: Schema.boolean().default(true).volatile(),
   avoidLava: Schema.boolean().default(true).volatile(),
   autoSleep: Schema.boolean().default(true).volatile(),
-  autonomy: Schema.number().min(0).max(100).default(60).volatile(),
-  proactiveIntervalMs: Schema.number().min(1e4).default(45e3).volatile(),
+  autonomy: Schema.number().min(0).max(100).default(0).volatile(),
+  proactiveIntervalMs: Schema.number().min(3e4).default(18e4).volatile(),
+  ambientChat: Schema.boolean().default(false).volatile(),
   agentSessionId: Schema.string().default("").volatile(),
   persona: Schema.string().default("").volatile()
 });
@@ -60636,8 +60691,9 @@ var DEFAULTS = {
   autoDefend: true,
   avoidLava: true,
   autoSleep: true,
-  autonomy: 60,
-  proactiveIntervalMs: 45e3,
+  autonomy: 0,
+  proactiveIntervalMs: 18e4,
+  ambientChat: false,
   agentSessionId: "",
   persona: ""
 };
@@ -60677,8 +60733,79 @@ function apply(ctx2, config = {}) {
     autoSleep: options.autoSleep,
     logger
   });
+  const actionBudget = /* @__PURE__ */ new Map();
+  const resetActionBudget = (agent) => {
+    actionBudget.set(agent?.id ?? "unknown", {
+      start: Date.now(),
+      count: 0,
+      limit: OWNER_ACTION_LIMIT
+    });
+  };
+  const companion = new Companion({
+    body,
+    ctx: ctx2,
+    config: options,
+    logger,
+    onOwnerMessage: resetActionBudget
+  });
+  const ACTION_TOOLS = /* @__PURE__ */ new Set([
+    "mc_goto",
+    "mc_move",
+    "mc_follow",
+    "mc_dig",
+    "mc_collect",
+    "mc_pickup",
+    "mc_place",
+    "mc_attack",
+    "mc_eat",
+    "mc_craft",
+    "mc_equip",
+    "mc_give",
+    "mc_use",
+    "mc_container",
+    "mc_sleep",
+    "mc_wake",
+    "mc_jump",
+    "mc_sneak",
+    "mc_sprint",
+    "mc_swing"
+  ]);
+  const ACTION_LIMIT = 8;
+  const OWNER_ACTION_LIMIT = 3;
+  const ACTION_WINDOW_MS = 6e4;
+  const takeActionBudget = (agent) => {
+    const key = agent?.id ?? "unknown";
+    const now = Date.now();
+    const entry = actionBudget.get(key);
+    if (entry === void 0 || now - entry.start > ACTION_WINDOW_MS) {
+      actionBudget.set(key, { start: now, count: 1, limit: ACTION_LIMIT });
+      return true;
+    }
+    entry.count += 1;
+    return entry.count <= (entry.limit ?? ACTION_LIMIT);
+  };
   for (const tool of createTools(body)) {
-    ctx2.tools.register(tool);
+    const original = tool.execute;
+    const guarded = {
+      ...tool,
+      async execute(args, exec) {
+        if (exec?.agent) companion.bindAgent(exec.agent);
+        if (ACTION_TOOLS.has(tool.name) && tool.name !== "mc_stop") {
+          if (!takeActionBudget(exec?.agent)) {
+            return "\u26D4 \u8FD9\u6761\u6D88\u606F\u91CC\u7684\u52A8\u4F5C\u6B21\u6570\u592A\u591A\u4E86\u3002\u5148\u505C\u4E0B\uFF0C\u56DE\u7B54\u4E3B\u4EBA\u6216\u6C47\u62A5\u8FDB\u5C55\uFF1B\u4E0D\u8981\u7EE7\u7EED\u5237\u52A8\u4F5C\u3002";
+          }
+          const busy = body.busy > 0 || body.currentIntent !== null || body.following;
+          if (busy) {
+            const doing = body.currentIntent?.name ?? (body.following ? "follow" : "\u53E6\u4E00\u4E2A\u52A8\u4F5C");
+            return `\u26D4 \u8EAB\u4F53\u8FD8\u5728\u505A ${doing}\u3002\u5148 mc_status \u770B\u8FDB\u5EA6\uFF0C\u6216 mc_stop \u518D\u6362\u52A8\u4F5C\u3002\u4E0D\u8981\u91CD\u590D\u8C03\u7528\u3002`;
+          }
+        }
+        const result = await original(args, exec);
+        if (tool.name === "mc_stop") resetActionBudget(exec?.agent);
+        return result;
+      }
+    };
+    ctx2.tools.register(guarded);
   }
   ctx2.systemPrompt.section({
     name: "minemate:embodiment",
@@ -60686,7 +60813,6 @@ function apply(ctx2, config = {}) {
     // Dynamic so persona/owner edits take effect on the next request.
     text: () => buildSystemPrompt(options)
   });
-  const companion = new Companion({ body, ctx: ctx2, config: options, logger });
   const connectQuietly = (reason) => {
     body.connect().catch((error) => {
       logger.warn?.(`[minemate] ${reason}: ${error?.message ?? error}`);

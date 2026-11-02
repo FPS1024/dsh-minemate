@@ -44,8 +44,9 @@ export const Config = z.object({
   autoDefend: z.boolean().default(true).volatile(),
   avoidLava: z.boolean().default(true).volatile(),
   autoSleep: z.boolean().default(true).volatile(),
-  autonomy: z.number().min(0).max(100).default(60).volatile(),
-  proactiveIntervalMs: z.number().min(10_000).default(45_000).volatile(),
+  autonomy: z.number().min(0).max(100).default(0).volatile(),
+  proactiveIntervalMs: z.number().min(30_000).default(180_000).volatile(),
+  ambientChat: z.boolean().default(false).volatile(),
   agentSessionId: z.string().default('').volatile(),
   persona: z.string().default('').volatile(),
 })
@@ -69,8 +70,9 @@ const DEFAULTS = {
   autoDefend: true,
   avoidLava: true,
   autoSleep: true,
-  autonomy: 60,
-  proactiveIntervalMs: 45_000,
+  autonomy: 0,
+  proactiveIntervalMs: 180_000,
+  ambientChat: false,
   agentSessionId: '',
   persona: '',
 }
@@ -117,8 +119,71 @@ export function apply(ctx, config = {}) {
     logger,
   })
 
+  const actionBudget = new Map()
+  const resetActionBudget = (agent) => {
+    // A fresh owner message gets its own short leash: at most 3 action tools.
+    actionBudget.set(agent?.id ?? 'unknown', {
+      start: Date.now(),
+      count: 0,
+      limit: OWNER_ACTION_LIMIT,
+    })
+  }
+
+  const companion = new Companion({
+    body,
+    ctx,
+    config: options,
+    logger,
+    onOwnerMessage: resetActionBudget,
+  })
+
+  const ACTION_TOOLS = new Set([
+    'mc_goto', 'mc_move', 'mc_follow', 'mc_dig', 'mc_collect', 'mc_pickup',
+    'mc_place', 'mc_attack', 'mc_eat', 'mc_craft', 'mc_equip', 'mc_give',
+    'mc_use', 'mc_container', 'mc_sleep', 'mc_wake', 'mc_jump', 'mc_sneak',
+    'mc_sprint', 'mc_swing',
+  ])
+  const ACTION_LIMIT = 8
+  const OWNER_ACTION_LIMIT = 3
+  const ACTION_WINDOW_MS = 60_000
+
+  const takeActionBudget = (agent) => {
+    const key = agent?.id ?? 'unknown'
+    const now = Date.now()
+    const entry = actionBudget.get(key)
+    if (entry === undefined || now - entry.start > ACTION_WINDOW_MS) {
+      actionBudget.set(key, { start: now, count: 1, limit: ACTION_LIMIT })
+      return true
+    }
+    entry.count += 1
+    return entry.count <= (entry.limit ?? ACTION_LIMIT)
+  }
+
   for (const tool of createTools(body)) {
-    ctx.tools.register(tool)
+    const original = tool.execute
+    const guarded = {
+      ...tool,
+      async execute(args, exec) {
+        if (exec?.agent) companion.bindAgent(exec.agent)
+
+        // mc_stop must always get through, even while an intent is running.
+        if (ACTION_TOOLS.has(tool.name) && tool.name !== 'mc_stop') {
+          if (!takeActionBudget(exec?.agent)) {
+            return '⛔ 这条消息里的动作次数太多了。先停下，回答主人或汇报进展；不要继续刷动作。'
+          }
+          const busy = body.busy > 0 || body.currentIntent !== null || body.following
+          if (busy) {
+            const doing = body.currentIntent?.name ?? (body.following ? 'follow' : '另一个动作')
+            return `⛔ 身体还在做 ${doing}。先 mc_status 看进度，或 mc_stop 再换动作。不要重复调用。`
+          }
+        }
+
+        const result = await original(args, exec)
+        if (tool.name === 'mc_stop') resetActionBudget(exec?.agent)
+        return result
+      },
+    }
+    ctx.tools.register(guarded)
   }
 
   ctx.systemPrompt.section({
@@ -127,8 +192,6 @@ export function apply(ctx, config = {}) {
     // Dynamic so persona/owner edits take effect on the next request.
     text: () => buildSystemPrompt(options),
   })
-
-  const companion = new Companion({ body, ctx, config: options, logger })
 
   const connectQuietly = (reason) => {
     body.connect().catch((error) => {
