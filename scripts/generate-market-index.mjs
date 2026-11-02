@@ -15,7 +15,7 @@ process.chdir(root)
 
 const pkg = JSON.parse(readFileSync('package.json', 'utf8'))
 const commit = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim()
-const repo = 'https://github.com/fps1024/dsh-minemate'
+const repo = 'https://github.com/FPS1024/dsh-minemate'
 
 const marketDir = resolve(root, 'market')
 mkdirSync(marketDir, { recursive: true })
@@ -44,7 +44,7 @@ const index = {
         zh: '把一个真实的 Minecraft Java 玩家接到 DSH：看、走、挖、建、捡、打、睡、聊天。',
       },
       icon: 'icon.svg',
-      author: 'fps1024',
+      author: 'FPS1024',
       homepage: pkg.homepage,
       repository: { url: repo },
       metadata: {

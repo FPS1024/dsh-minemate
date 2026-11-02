@@ -1,6 +1,6 @@
 {
   "name": "@fps1024/dsh-minemate",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "DSH-powered Minecraft Java companion: a real player body driven by a DeepSeek Harness Agent.",
   "type": "module",
   "main": "./index.js",
@@ -57,17 +57,17 @@
     "mineflayer",
     "ai-agent"
   ],
-  "author": "fps1024",
+  "author": "FPS1024",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fps1024/dsh-minemate.git"
+    "url": "git+https://github.com/FPS1024/dsh-minemate.git"
   },
-  "homepage": "https://github.com/fps1024/dsh-minemate#readme",
+  "homepage": "https://github.com/FPS1024/dsh-minemate#readme",
   "bugs": {
-    "url": "https://github.com/fps1024/dsh-minemate/issues"
+    "url": "https://github.com/FPS1024/dsh-minemate/issues"
   }
 }

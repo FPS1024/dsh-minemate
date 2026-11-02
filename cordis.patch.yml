@@ -1,7 +1,7 @@
 # MineMate DSH bundle layer.
 #
 # Installed use (the DSH host supplies @deepseek-ai/* at runtime):
-#   dsh plugin --profile tui add github:fps1024/dsh-minemate
+#   dsh plugin --profile tui add github:FPS1024/dsh-minemate
 #   dsh tui
 #
 # Local development:

@@ -2,9 +2,9 @@
 
 > 让 **DeepSeek Harness** 作为一个真实的 Minecraft Java 玩家生活：看、走、挖、建、捡、打、睡、聊天。
 
-- 开源地址：<https://github.com/fps1024/dsh-minemate>
+- 开源地址：<https://github.com/FPS1024/dsh-minemate>
 - 包名：`@fps1024/dsh-minemate`
-- 当前版本：**1.2.0（P2）**
+- 当前版本：**1.2.1（P2）**
 - License：MIT
 
 这个仓库是独立插件项目，不属于 `~/deepseek-harness` 的编译产物。DSH 是大脑，本插件是身体；在已经安装好的 DSH 发行版里从插件地址安装即可。
@@ -23,14 +23,14 @@
 ### 方式 A：直接从 Git 地址安装
 
 ```bash
-dsh plugin --profile tui add github:fps1024/dsh-minemate
+dsh plugin --profile tui add github:FPS1024/dsh-minemate
 dsh tui
 ```
 
 或者在 DSH 客户端插件页的安装地址里填入：
 
 ```text
-github:fps1024/dsh-minemate
+github:FPS1024/dsh-minemate
 ```
 
 插件包自带 `dsh.bundle.patch`，安装后会把身体插件插入 profile。
@@ -49,7 +49,7 @@ pnpm run market
 可以直接使用的 raw URL（推送到 GitHub 后）：
 
 ```text
-https://raw.githubusercontent.com/fps1024/dsh-minemate/main/market/index.json
+https://raw.githubusercontent.com/FPS1024/dsh-minemate/main/market/index.json
 ```
 
 ### 运行时依赖
@@ -61,7 +61,7 @@ https://raw.githubusercontent.com/fps1024/dsh-minemate/main/market/index.json
 前置：Node ≥ 22.12、pnpm 10、一个可用的 DSH 安装、一个 Minecraft 服务器（Paper 1.21.6 即可）。
 
 ```bash
-git clone https://github.com/fps1024/dsh-minemate.git
+git clone https://github.com/FPS1024/dsh-minemate.git
 cd dsh-minemate
 pnpm install
 
