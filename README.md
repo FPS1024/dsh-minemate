@@ -4,7 +4,7 @@
 
 - 开源地址：<https://github.com/FPS1024/dsh-minemate>
 - 包名：`@fps1024/dsh-minemate`
-- 当前版本：**1.2.1（P2）**
+- 当前版本：**1.2.2（P2 + 可视化配置）**
 - License：MIT
 
 这个仓库是独立插件项目，不属于 `~/deepseek-harness` 的编译产物。DSH 是大脑，本插件是身体；在已经安装好的 DSH 发行版里从插件地址安装即可。
@@ -87,7 +87,11 @@ DSH_PROFILE=web ./scripts/dsh-dev.sh --no-open --port 0
 
 ## 配置
 
-`cordis.patch.yml` 的 `config`：
+### 在 DSH 客户端里配置
+
+安装并启用插件后，打开 **插件 → MineMate → 行 `dsh-minemate` → 配置**。1.2.2 起插件自带浏览器侧配置面板（`client.js`），可以编辑下面的连接、行为、Agent 字段并保存；如果页面提示需要重启，重启 DSH 后生效。
+
+`cordis.patch.yml` 的 `config` 仍然有效，适合部署时直接写 profile：
 
 | 键 | 默认 | 说明 |
 |---|---|---|
@@ -146,7 +150,7 @@ DSH_PROFILE=web ./scripts/dsh-dev.sh --no-open --port 0
 ## 验证
 
 ```bash
-pnpm test                 # 单元测试：感知、humanizer、反射判定、插件装配
+pnpm test                 # 单元测试：感知、humanizer、反射判定、插件装配、客户端配置 bundle
 pnpm smoke                # 实机：上线→观察→扫树→走→挖→捡→说
 pnpm smoke:place          # 实机：放火把，确认成功判定
 pnpm smoke:container      # 实机：箱子 list / deposit / withdraw 往返
@@ -157,7 +161,8 @@ pnpm smoke:lava           # 实机：RCON 放岩浆，确认避岩浆
 
 已实测（2026-11-02）：
 
-- 单元测试 13 passed。
+- 单元测试 15 passed（含客户端配置 bundle 的 slot 注册与表单渲染）。
+- Web UI 验收：Plugins → `@fps1024/dsh-minemate` → Configure，MineMate 设置表单完整渲染；把 `autonomy` 改为 61 并保存，profile 写入 `autonomy: 61`。
 - 实机：上线、观察、扫描 `oak_log`、寻路、挖原木、拾取、聊天。
 - DSH headless：harness 自己调用 `mc_observe` / `mc_scan` / `mc_craft` / `mc_place` / `mc_say`，服务器日志出现 Alex 聊天。
 - 睡床：`mc_sleep` → `isSleeping: true`，`mc_wake` → `false`。

@@ -40,5 +40,6 @@ test('apply registers the mc_* tools and the embodiment prompt', () => {
 
   assert.ok(tools.length >= 20)
   assert.ok(sections.some((section) => section.name === 'minemate:embodiment'))
-  assert.match(sections[0].text, /真正生活在 Minecraft/)
+  const prompt = typeof sections[0].text === 'function' ? sections[0].text() : sections[0].text
+  assert.match(prompt, /真正生活在 Minecraft/)
 })

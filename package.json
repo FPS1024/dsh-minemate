@@ -1,18 +1,20 @@
 {
   "name": "@fps1024/dsh-minemate",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "DSH-powered Minecraft Java companion: a real player body driven by a DeepSeek Harness Agent.",
   "type": "module",
   "main": "./index.js",
   "exports": {
     ".": "./index.js",
     "./lib/*": "./lib/*.js",
+    "./client": "./client.js",
     "./icon": "./icon.svg",
     "./cordis.patch.yml": "./cordis.patch.yml"
   },
   "files": [
     "index.js",
     "lib/*.js",
+    "client.js",
     "cordis.patch.yml",
     "icon.svg",
     "README.md",
@@ -21,11 +23,17 @@
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-plugin-manager"
+      ]
     }
   },
   "scripts": {
     "pretest": "bash scripts/link-harness-peers.sh",
-    "check": "node --check index.js && node --check lib/perception.js && node --check lib/bot.js && node --check lib/humanizer.js && node --check lib/tools.js && node --check lib/companion.js && node --check lib/persona.js",
+    "check": "node --check index.js && node --check client.js && node --check lib/perception.js && node --check lib/bot.js && node --check lib/humanizer.js && node --check lib/tools.js && node --check lib/companion.js && node --check lib/persona.js",
     "test": "pnpm run check && node --test test/*.test.mjs",
     "smoke": "node test/vertical-slice.mjs",
     "smoke:place": "node test/place-slice.mjs",
