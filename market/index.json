@@ -1,0 +1,75 @@
+{
+  "format": 1,
+  "title": {
+    "en": "MineMate",
+    "zh": "MineMate"
+  },
+  "description": {
+    "en": "A real Minecraft player body for DeepSeek Harness.",
+    "zh": "让 DeepSeek Harness 作为一个真实 Minecraft 玩家生活的身体插件。"
+  },
+  "metadata": {
+    "categories": {
+      "game": {
+        "title": {
+          "en": "Games",
+          "zh": "游戏"
+        }
+      }
+    },
+    "labels": {
+      "minecraft": {
+        "title": {
+          "en": "Minecraft",
+          "zh": "Minecraft"
+        }
+      },
+      "mineflayer": {
+        "title": {
+          "en": "Mineflayer",
+          "zh": "Mineflayer"
+        }
+      }
+    }
+  },
+  "plugins": [
+    {
+      "name": "@fps1024/dsh-minemate",
+      "title": {
+        "en": "MineMate",
+        "zh": "MineMate"
+      },
+      "description": {
+        "en": "Connect a real Minecraft Java player to DSH: perceive, walk, mine, build, pick up, fight, sleep and chat.",
+        "zh": "把一个真实的 Minecraft Java 玩家接到 DSH：看、走、挖、建、捡、打、睡、聊天。"
+      },
+      "icon": "icon.svg",
+      "author": "fps1024",
+      "homepage": "https://github.com/fps1024/dsh-minemate#readme",
+      "repository": {
+        "url": "https://github.com/fps1024/dsh-minemate"
+      },
+      "metadata": {
+        "category": "game",
+        "labels": [
+          "minecraft",
+          "mineflayer"
+        ]
+      },
+      "versions": [
+        {
+          "version": "1.2.0",
+          "publishTimestamp": 1793633609,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/fps1024/dsh-minemate",
+            "commit": "c5fad2e471e2443cf61c08cbbcce93f2d049a22c"
+          },
+          "engines": {
+            "dsh": ">=0.2.1-rc.7"
+          }
+        }
+      ]
+    }
+  ]
+}
