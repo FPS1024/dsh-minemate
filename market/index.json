@@ -44,10 +44,10 @@
         "zh": "把一个真实的 Minecraft Java 玩家接到 DSH：看、走、挖、建、捡、打、睡、聊天。"
       },
       "icon": "icon.svg",
-      "author": "fps1024",
-      "homepage": "https://github.com/fps1024/dsh-minemate#readme",
+      "author": "FPS1024",
+      "homepage": "https://github.com/FPS1024/dsh-minemate#readme",
       "repository": {
-        "url": "https://github.com/fps1024/dsh-minemate"
+        "url": "https://github.com/FPS1024/dsh-minemate"
       },
       "metadata": {
         "category": "game",
@@ -58,12 +58,12 @@
       },
       "versions": [
         {
-          "version": "1.2.0",
-          "publishTimestamp": 1793633609,
+          "version": "1.2.1",
+          "publishTimestamp": 1793634840,
           "source": {
             "type": "git",
-            "url": "https://github.com/fps1024/dsh-minemate",
-            "commit": "c5fad2e471e2443cf61c08cbbcce93f2d049a22c"
+            "url": "https://github.com/FPS1024/dsh-minemate",
+            "commit": "af2858ed5d17b32bf8692e05e8df31d0adbdd224"
           },
           "engines": {
             "dsh": ">=0.2.1-rc.7"
