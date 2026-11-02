@@ -135,7 +135,7 @@ DSH_PROFILE=web ./scripts/dsh-dev.sh --no-open --port 0
 - 要固定 Alex 的游戏内皮肤，二选一：
   1. 服务器安装 **SkinsRestorer**（或同类皮肤插件），给 `Alex` 设置默认 Alex 皮肤；
   2. 使用正版 Microsoft 账号 + `online-mode=true`，让真实 profile 皮肤生效。
-- 本插件不会伪造皮肤纹理；它只负责让玩家正常上线和行动。
+- 本插件不会伪造皮肤纹理；它只负责让玩家正常上线和行动。具体命令见 [docs/skin.md](docs/skin.md)。
 
 ## 验证
 
