@@ -58181,39 +58181,39 @@ function wrap(body, fn) {
   return async (args, exec) => {
     if (!body.online) return "\u274C \u8FD8\u6CA1\u8FDB\u5165\u6E38\u620F\u3002\u7B49 Alex \u4E0A\u7EBF\u540E\u518D\u8BD5\u3002";
     try {
-      return await fn(args ?? {}, exec ?? {});
+      const value = await fn(args ?? {}, exec ?? {});
+      if (typeof value === "function") throw new Error("\u5DE5\u5177\u5185\u90E8\u8FD4\u56DE\u4E86\u672A\u6267\u884C\u7684\u51FD\u6570");
+      return value;
     } catch (error) {
       return `\u274C ${error instanceof Error ? error.message : String(error)}`;
     }
   };
 }
-function abortable(body, exec, fn) {
-  return async () => {
-    const signal = exec?.signal;
-    if (!signal) return fn();
-    if (signal.aborted) {
-      await body.stop();
-      throw new Error("\u52A8\u4F5C\u5DF2\u53D6\u6D88");
-    }
-    return await new Promise((resolve2, reject) => {
-      let settled = false;
-      const onAbort = () => {
-        void body.stop();
-        finish(reject, new Error("\u52A8\u4F5C\u5DF2\u53D6\u6D88"));
-      };
-      const finish = (callback, value) => {
-        if (settled) return;
-        settled = true;
-        signal.removeEventListener("abort", onAbort);
-        callback(value);
-      };
-      signal.addEventListener("abort", onAbort, { once: true });
-      Promise.resolve().then(fn).then(
-        (value) => finish(resolve2, value),
-        (error) => finish(reject, error)
-      );
-    });
-  };
+async function abortable(body, exec, fn) {
+  const signal = exec?.signal;
+  if (!signal) return fn();
+  if (signal.aborted) {
+    await body.stop();
+    throw new Error("\u52A8\u4F5C\u5DF2\u53D6\u6D88");
+  }
+  return await new Promise((resolve2, reject) => {
+    let settled = false;
+    const onAbort = () => {
+      void body.stop();
+      finish(reject, new Error("\u52A8\u4F5C\u5DF2\u53D6\u6D88"));
+    };
+    const finish = (callback, value) => {
+      if (settled) return;
+      settled = true;
+      signal.removeEventListener("abort", onAbort);
+      callback(value);
+    };
+    signal.addEventListener("abort", onAbort, { once: true });
+    Promise.resolve().then(fn).then(
+      (value) => finish(resolve2, value),
+      (error) => finish(reject, error)
+    );
+  });
 }
 function pointArgs(args) {
   if (Number.isFinite(args.x) && Number.isFinite(args.y) && Number.isFinite(args.z)) {

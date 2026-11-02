@@ -4,8 +4,10 @@
 
 - 开源地址：<https://github.com/FPS1024/dsh-minemate>
 - 包名：`@fps1024/dsh-minemate`
-- 当前版本：**1.2.7（响应优先 + 低噪声 + 性能）**
+- 当前版本：**1.2.8（响应优先 + 低噪声 + 性能）**
 
+> **1.2.8 关键修复**：`mc_goto`、`mc_move`、`mc_follow`、`mc_dig`、`mc_pickup`、`mc_place`、`mc_attack`、`mc_sleep`、`mc_craft`、`mc_container` 之前返回了一个未执行的函数，DSH 报 `value is not lossless JSON`，身体实际没收到动作。现在动作会立即执行，并加了覆盖这 10 个工具的回归测试。升级后必须重启 DSH。
+>
 > **1.2.6 重点**：主人说话会抢占正在运行的工具回合，先回答再行动；一条主人消息最多连续 3 个动作工具；身体忙时拒绝重复动作；捡到东西、其他玩家上下线、普通受伤不再主动叫醒大脑；默认关闭空闲生活回合与其他玩家旁听。旧的长会话请新建一个 DSH session，避免旧上下文继续增加渲染和模型开销。
 >
 > **1.2.5 关键修复**：如果在发行版客户端启用时报
@@ -171,6 +173,7 @@ pnpm smoke:lava           # 实机：RCON 放岩浆，确认避岩浆
 
 已实测（2026-11-03）：
 
+- 1.2.8 单元测试 22 passed：包含 10 个 abortable 工具必须返回字符串、不能返回 thunk 的回归测试。
 - 1.2.6 单元测试 20 passed：主人消息抢占、上线/环境事件不叫醒大脑、采集完成唤醒、未知主人血量不显示为 0。
 - 单元测试 15 passed（含客户端配置 bundle 的 slot 注册与表单渲染）。
 - 1.2.5 实机安装：web profile 用普通 tarball 包安装，插件激活成功、Alex 上线；1.2.2 的 `createRequire.resolve.paths` 错误不再出现。
