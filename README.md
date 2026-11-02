@@ -46,7 +46,13 @@ pnpm run market
 # 写入 market/index.json + market/icon.svg
 ```
 
-可以直接使用的 raw URL（推送到 GitHub 后）：
+可以直接使用的索引 URL（jsDelivr 的更新比 raw.githubusercontent.com 快）：
+
+```text
+https://cdn.jsdelivr.net/gh/FPS1024/dsh-minemate@main/market/index.json
+```
+
+raw 备用地址：
 
 ```text
 https://raw.githubusercontent.com/FPS1024/dsh-minemate/main/market/index.json
