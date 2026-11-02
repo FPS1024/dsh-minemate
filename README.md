@@ -4,7 +4,13 @@
 
 - 开源地址：<https://github.com/FPS1024/dsh-minemate>
 - 包名：`@fps1024/dsh-minemate`
-- 当前版本：**1.2.2（P2 + 可视化配置）**
+- 当前版本：**1.2.5（P2 + 可视化配置 + Host bundle）**
+
+> **1.2.5 关键修复**：如果在发行版客户端启用时报
+> `createRequire.resolve.paths is not a function or its return value is not iterable`，
+> 请升级到 1.2.5。Host 依赖已打包进 `bundle/index.js`，绕过了 DSH
+> profile loader 对 `readable-stream` 发出的 `process/`、`string_decoder/`
+> 这种带尾斜杠请求的解析 bug。
 - License：MIT
 
 这个仓库是独立插件项目，不属于 `~/deepseek-harness` 的编译产物。DSH 是大脑，本插件是身体；在已经安装好的 DSH 发行版里从插件地址安装即可。
@@ -150,6 +156,7 @@ DSH_PROFILE=web ./scripts/dsh-dev.sh --no-open --port 0
 ## 验证
 
 ```bash
+pnpm build                # 修改 Host 源码后重新生成 bundle/index.js
 pnpm test                 # 单元测试：感知、humanizer、反射判定、插件装配、客户端配置 bundle
 pnpm smoke                # 实机：上线→观察→扫树→走→挖→捡→说
 pnpm smoke:place          # 实机：放火把，确认成功判定
@@ -162,6 +169,7 @@ pnpm smoke:lava           # 实机：RCON 放岩浆，确认避岩浆
 已实测（2026-11-02）：
 
 - 单元测试 15 passed（含客户端配置 bundle 的 slot 注册与表单渲染）。
+- 1.2.5 实机安装：web profile 用普通 tarball 包安装，插件激活成功、Alex 上线；1.2.2 的 `createRequire.resolve.paths` 错误不再出现。
 - Web UI 验收：Plugins → `@fps1024/dsh-minemate` → Configure，MineMate 设置表单完整渲染；把 `autonomy` 改为 61 并保存，profile 写入 `autonomy: 61`。
 - 实机：上线、观察、扫描 `oak_log`、寻路、挖原木、拾取、聊天。
 - DSH headless：harness 自己调用 `mc_observe` / `mc_scan` / `mc_craft` / `mc_place` / `mc_say`，服务器日志出现 Alex 聊天。
