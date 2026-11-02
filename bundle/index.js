@@ -60734,12 +60734,13 @@ function apply(ctx2, config = {}) {
     logger
   });
   const actionBudget = /* @__PURE__ */ new Map();
-  const resetActionBudget = (agent) => {
-    actionBudget.set(agent?.id ?? "unknown", {
-      start: Date.now(),
-      count: 0,
-      limit: OWNER_ACTION_LIMIT
-    });
+  let ownerActionAt = 0;
+  const resetActionBudget = () => {
+    ownerActionAt = Date.now();
+    actionBudget.clear();
+  };
+  const clearActionBudget = (agent) => {
+    actionBudget.delete(agent?.id ?? "unknown");
   };
   const companion = new Companion({
     body,
@@ -60778,11 +60779,12 @@ function apply(ctx2, config = {}) {
     const now = Date.now();
     const entry = actionBudget.get(key);
     if (entry === void 0 || now - entry.start > ACTION_WINDOW_MS) {
-      actionBudget.set(key, { start: now, count: 1, limit: ACTION_LIMIT });
+      const limit = now - ownerActionAt <= ACTION_WINDOW_MS ? OWNER_ACTION_LIMIT : ACTION_LIMIT;
+      actionBudget.set(key, { start: now, count: 1, limit });
       return true;
     }
     entry.count += 1;
-    return entry.count <= (entry.limit ?? ACTION_LIMIT);
+    return entry.count <= entry.limit;
   };
   for (const tool of createTools(body)) {
     const original = tool.execute;
@@ -60801,7 +60803,7 @@ function apply(ctx2, config = {}) {
           }
         }
         const result = await original(args, exec);
-        if (tool.name === "mc_stop") resetActionBudget(exec?.agent);
+        if (tool.name === "mc_stop") clearActionBudget(exec?.agent);
         return result;
       }
     };

@@ -120,13 +120,14 @@ export function apply(ctx, config = {}) {
   })
 
   const actionBudget = new Map()
-  const resetActionBudget = (agent) => {
+  let ownerActionAt = 0
+  const resetActionBudget = () => {
     // A fresh owner message gets its own short leash: at most 3 action tools.
-    actionBudget.set(agent?.id ?? 'unknown', {
-      start: Date.now(),
-      count: 0,
-      limit: OWNER_ACTION_LIMIT,
-    })
+    ownerActionAt = Date.now()
+    actionBudget.clear()
+  }
+  const clearActionBudget = (agent) => {
+    actionBudget.delete(agent?.id ?? 'unknown')
   }
 
   const companion = new Companion({
@@ -152,11 +153,12 @@ export function apply(ctx, config = {}) {
     const now = Date.now()
     const entry = actionBudget.get(key)
     if (entry === undefined || now - entry.start > ACTION_WINDOW_MS) {
-      actionBudget.set(key, { start: now, count: 1, limit: ACTION_LIMIT })
+      const limit = now - ownerActionAt <= ACTION_WINDOW_MS ? OWNER_ACTION_LIMIT : ACTION_LIMIT
+      actionBudget.set(key, { start: now, count: 1, limit })
       return true
     }
     entry.count += 1
-    return entry.count <= (entry.limit ?? ACTION_LIMIT)
+    return entry.count <= entry.limit
   }
 
   for (const tool of createTools(body)) {
@@ -179,7 +181,7 @@ export function apply(ctx, config = {}) {
         }
 
         const result = await original(args, exec)
-        if (tool.name === 'mc_stop') resetActionBudget(exec?.agent)
+        if (tool.name === 'mc_stop') clearActionBudget(exec?.agent)
         return result
       },
     }
